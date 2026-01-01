@@ -332,6 +332,7 @@ struct MakeBytes {
 
 struct SpanFromBytes {
   absl::Span<char> operator()(const py::bytes& result) const {
+    py::gil_scoped_acquire acquire;
     char* bytes;
     ssize_t num_bytes;
     PyBytes_AsStringAndSize(result.ptr(), &bytes, &num_bytes);

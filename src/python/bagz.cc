@@ -24,7 +24,7 @@
 namespace bagz {
 namespace {
 
-PYBIND11_MODULE(bagz, m) {
+PYBIND11_MODULE(bagz, m, pybind11::mod_gil_not_used()) {
   m.doc() = "Bagz Python Bindings";
   RegisterBagzIndex(m);
   RegisterBagzMultiIndex(m);
