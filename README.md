@@ -1,5 +1,21 @@
 # Bagz
 
+## Freethreading fork
+
+This is a fork of [bagz]() which adds freethreading (nogil) support and wheels.
+It publishes to PyPI as `bagz-freethreading` but still imports as
+`bagz`. Do not install both `bagz` and `bagz-freethreading` at the same time.
+
+```sh
+uv pip install bagz-freethreading
+```
+
+Versioning for this fork follows upstream and uses PEP 440 post-releases,
+for example `0.2.0.post1`, `0.2.0.post2`, and so on. When upstream moves to
+`0.3.0`, this fork will continue as `0.3.0.post1`.
+
+What follows is the original readme.
+
 ## Overview
 
 *Bagz* is a format for storing a sequence of byte-array records, typically

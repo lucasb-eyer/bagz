@@ -81,7 +81,7 @@ macro(bagz_pybind11_extension NAME)
         message(FATAL_ERROR "bagz_pybind11_extension ${NAME} requires SOURCES to be specified.")
     endif()
 
-    pybind11_add_module(${NAME} SHARED ${PARSED_ARGS_SOURCES})
+    pybind11_add_module(${NAME} MODULE ${PARSED_ARGS_SOURCES})
 
     # Add the directory where the macro is called to the include path.
     # This allows sources to include headers relative to this directory,
