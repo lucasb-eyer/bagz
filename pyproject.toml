@@ -3,7 +3,7 @@ requires = ["scikit-build-core>=0.9"]
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "bagz"
+name = "bagz-freethreading"
 description="A format for storing a sequence of byte-array records"
 license = {file = "LICENSE"}
 authors = [
@@ -34,8 +34,8 @@ classifiers = [
 dynamic = ["version"]
 
 [project.urls]
-"Homepage" = "https://github.com/google-deepmind/bagz"
-"Bug Tracker" = "https://github.com/google-deepmind/bagz/issues"
+"Homepage" = "https://github.com/lucasb-eyer/bagz"
+"Bug Tracker" = "https://github.com/lucasb-eyer/bagz/issues"
 
 [tool.scikit-build]
 metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"

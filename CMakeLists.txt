@@ -172,6 +172,24 @@ file(WRITE ${CMAKE_BINARY_DIR}/__init__.py [[# Copyright 2025 Google LLC
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from importlib import metadata as _metadata
+
+
+def _bagz_has_dist(name: str) -> bool:
+    try:
+        _metadata.version(name)
+        return True
+    except _metadata.PackageNotFoundError:
+        return False
+
+
+if _bagz_has_dist("bagz") and _bagz_has_dist("bagz-freethreading"):
+    raise RuntimeError(
+        "Both 'bagz' and 'bagz-freethreading' are installed. "
+        "Uninstall one to avoid a broken setup: "
+        "pip uninstall bagz bagz-freethreading"
+    )
+
 from bagz.lib.bagz import *
 ]])
 
@@ -197,4 +215,3 @@ install(
   DESTINATION "bagz"
   RENAME "__init__.pyi"
 )
-
