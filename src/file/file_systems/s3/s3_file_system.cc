@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "absl/algorithm/container.h"
+#include "absl/base/call_once.h"
 #include "absl/base/no_destructor.h"
 #include "absl/base/nullability.h"
 #include "absl/functional/function_ref.h"
@@ -217,12 +218,11 @@ std::shared_ptr<Aws::S3::S3Client> S3FileSystem::Client() const {
   ClientFactory client_factory = client_factory_;
   if (client_factory == nullptr) {
     client_factory = [] {
-      static Aws::SDKOptions options;
-      static bool initialized = false;
-      if (!initialized) {
+      static absl::once_flag aws_init_once;
+      absl::call_once(aws_init_once, []() {
+        static Aws::SDKOptions options;
         Aws::InitAPI(options);
-        initialized = true;
-      }
+      });
       return std::make_shared<Aws::S3::S3Client>();
     };
   }
